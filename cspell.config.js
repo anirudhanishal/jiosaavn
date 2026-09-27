@@ -3,8 +3,6 @@ export default {
   language: 'en',
   words: [
     'saavn',
-    'Saya',
-    'apikey',
     'sumit',
     'kolhe',
     'shnwaz',
@@ -17,6 +15,7 @@ export default {
     'blurryface',
     'jiotune',
     'Kesariya',
+    'Interscope',
     'KHTML',
     'listid',
     'sumitkolhe',

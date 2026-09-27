@@ -14,7 +14,6 @@ This project exposes music search, songs, albums, artists, playlists, lyrics, po
 | Docs           | `https://shnwazdev-jiosaavn-apii.vercel.app/docs`          |
 | OpenAPI        | `https://shnwazdev-jiosaavn-apii.vercel.app/swagger`       |
 | Health         | `https://shnwazdev-jiosaavn-apii.vercel.app/health`        |
-| API key        | `https://shnwazdev-jiosaavn-apii.vercel.app/apikey`        |
 | Endpoint index | `https://shnwazdev-jiosaavn-apii.vercel.app/api/endpoints` |
 | API limits     | `https://shnwazdev-jiosaavn-apii.vercel.app/api/limits`    |
 
@@ -24,52 +23,23 @@ This project exposes music search, songs, albums, artists, playlists, lyrics, po
 - Static Vercel homepage with glass UI, motion, and no glow styling.
 - Scalar API reference at `/docs`.
 - OpenAPI 3.1 schema at `/swagger`.
-- Public `/apikey` generator for fast Saya API keys.
-- Protected `/api/*` routes with `X-API-Key`, Bearer auth, or `?apikey=`.
-- No app-level rate limiter added by this project.
+- Open public access without API keys or app-level rate limits.
 - Vercel native function entry at `api/index.js`.
 - Extended routes for browse, lyrics, podcasts, radio, and trending feeds.
 - Health route for uptime monitors.
 
-## 3D Quick Guide
+## Quick Guide
 
 ```mermaid
 flowchart LR
-  A["1. Client"] --> B["2. GET /apikey"]
-  B --> C["3. Receive Saya key"]
-  C --> D["4. Send key with /api/* request"]
-  D --> E["5. JioSaavn response"]
-```
-
-## API Key
-
-Generate a key:
-
-```sh
-curl "https://shnwazdev-jiosaavn-apii.vercel.app/apikey"
-```
-
-The response includes a key like:
-
-```text
-Saya-123456789-lz88w2-randomSignatureValue
-```
-
-Use the generated key with any protected `/api/*` route:
-
-```sh
-curl "https://shnwazdev-jiosaavn-apii.vercel.app/api/search/songs?query=Kesariya" \
-  -H "X-API-Key: Saya-123456789-lz88w2-randomSignatureValue"
-
-curl "https://shnwazdev-jiosaavn-apii.vercel.app/api/search/songs?query=Kesariya" \
-  -H "Authorization: Bearer Saya-123456789-lz88w2-randomSignatureValue"
-
-curl "https://shnwazdev-jiosaavn-apii.vercel.app/api/search/songs?query=Kesariya&apikey=Saya-123456789-lz88w2-randomSignatureValue"
+  A["1. Client"] --> B["2. GET /api/*"]
+  B --> C["3. JioSaavn upstream"]
+  C --> D["4. Clean JSON response"]
 ```
 
 ## API Policy
 
-This project does not add an app-level request limit. It requires a generated Saya API key for `/api/*` routes.
+This project does not add an app-level request limit. It provides direct, open access to all music endpoints.
 
 Normal limits can still come from:
 
@@ -82,7 +52,6 @@ Check the deployed policy at:
 
 ```text
 GET /api/limits
-X-API-Key: your-generated-key
 ```
 
 ## Endpoints
@@ -183,10 +152,9 @@ X-API-Key: your-generated-key
 
 ```sh
 curl "https://shnwazdev-jiosaavn-apii.vercel.app/health"
-curl "https://shnwazdev-jiosaavn-apii.vercel.app/apikey"
-curl "https://shnwazdev-jiosaavn-apii.vercel.app/api/search?query=Believer" -H "X-API-Key: your-generated-key"
-curl "https://shnwazdev-jiosaavn-apii.vercel.app/api/search/songs?query=Kesariya" -H "X-API-Key: your-generated-key"
-curl "https://shnwazdev-jiosaavn-apii.vercel.app/api/trending/songs?limit=1" -H "X-API-Key: your-generated-key"
+curl "https://shnwazdev-jiosaavn-apii.vercel.app/api/search?query=Believer"
+curl "https://shnwazdev-jiosaavn-apii.vercel.app/api/search/songs?query=Kesariya"
+curl "https://shnwazdev-jiosaavn-apii.vercel.app/api/trending/songs?limit=1"
 ```
 
 ## Run Locally

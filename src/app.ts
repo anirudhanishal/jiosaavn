@@ -167,7 +167,6 @@ export class App {
           docs: `${origin}/docs`,
           openapi: `${origin}/swagger`,
           health: `${origin}/health`,
-          apiKey: `${origin}/apikey`,
           endpoints: `${origin}/api/endpoints`,
           limits: `${origin}/api/limits`,
           limitPolicy: API_LIMITS
