@@ -32,7 +32,9 @@ export default {
     'topquery',
     'vcode',
     'webapi',
-    'webradio'
+    'webradio',
+    'tracklist',
+    'tracklists'
   ],
   ignorePaths: ['**/node_modules/**', 'dist', 'coverage', '.vscode', '.vercel-sim', 'CHANGELOG.md']
 }
