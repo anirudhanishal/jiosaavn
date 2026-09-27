@@ -1,238 +1,263 @@
 # ShnwazDev JioSaavn API
 
-Unofficial JioSaavn API and documentation website built for `shnwazdev`.
-
-This project exposes music search, songs, albums, artists, playlists, lyrics, podcasts, browse feeds, radio, and trending routes through a Hono + TypeScript API. It includes a glass-style homepage, OpenAPI 3.1 schema, Scalar docs, health checks, and Vercel-ready serverless hosting.
-
 [![CI](https://github.com/shnwazdeveloper/shnwazdev-jiosaavn-api/actions/workflows/ci.yaml/badge.svg)](https://github.com/shnwazdeveloper/shnwazdev-jiosaavn-api/actions/workflows/ci.yaml)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.8-blue.svg)](https://www.typescriptlang.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-%3E%3D20-green.svg)](https://nodejs.org/)
+[![Hono](https://img.shields.io/badge/Framework-Hono%20v4-E36002.svg)](https://hono.dev/)
+[![OpenAPI](https://img.shields.io/badge/OpenAPI-3.1-6BA539.svg)](https://swagger.io/specification/)
+[![License](https://img.shields.io/badge/License-MIT-black.svg)](LICENSE)
 
-## Live Links
+Unofficial JioSaavn API and developer portal built for `shnwazdev`. Exposes comprehensive music metadata, 320kbps audio streams, albums, artists, browse feeds, synced lyrics, playlists, podcasts, radio, search, and trending charts through high-performance Hono and TypeScript edge runtimes.
 
-| Page           | URL                                                        |
-| -------------- | ---------------------------------------------------------- |
-| Website        | `https://shnwazdev-jiosaavn-apii.vercel.app/`              |
-| Docs           | `https://shnwazdev-jiosaavn-apii.vercel.app/docs`          |
-| OpenAPI        | `https://shnwazdev-jiosaavn-apii.vercel.app/swagger`       |
-| Health         | `https://shnwazdev-jiosaavn-apii.vercel.app/health`        |
-| Endpoint index | `https://shnwazdev-jiosaavn-apii.vercel.app/api/endpoints` |
-| API limits     | `https://shnwazdev-jiosaavn-apii.vercel.app/api/limits`    |
+---
 
-## Features
+## Highlights
 
-- Hono API with TypeScript and Zod OpenAPI.
-- Static Vercel homepage with glass UI, motion, and no glow styling.
-- Scalar API reference at `/docs`.
-- OpenAPI 3.1 schema at `/swagger`.
-- Open public access without API keys or app-level rate limits.
-- Vercel native function entry at `api/index.js`.
-- Extended routes for browse, lyrics, podcasts, radio, and trending feeds.
-- Health route for uptime monitors.
+- **Open Public Access**: No API keys, tokens, or registration required.
+- **Zero Rate Limits**: No application-level throttling or artificial request caps.
+- **Edge Native**: Ready for Cloudflare Workers and Vercel serverless deployments.
+- **OpenAPI 3.1 & Scalar**: Interactive API reference and live request testing.
+- **Type-Safe Models**: Robust validation with Zod schemas and full TypeScript coverage.
+- **47+ Music Endpoints**: Complete coverage across search, songs, albums, artists, playlists, lyrics, radio, and feeds.
 
-## Quick Guide
+---
+
+## Live Deployments
+
+| Resource | Target | URL |
+| :--- | :--- | :--- |
+| **Website** | Production Portal | `https://shnwazdev-jiosaavn-apii.vercel.app/` |
+| **Scalar Docs** | Interactive API Testing | `https://shnwazdev-jiosaavn-apii.vercel.app/docs` |
+| **OpenAPI Spec** | Swagger Schema JSON | `https://shnwazdev-jiosaavn-apii.vercel.app/swagger` |
+| **Health Check** | Status / Uptime Monitor | `https://shnwazdev-jiosaavn-apii.vercel.app/health` |
+| **Endpoint Index** | Machine-Readable Catalog | `https://shnwazdev-jiosaavn-apii.vercel.app/api/endpoints` |
+| **Limits Metadata** | Policy Information | `https://shnwazdev-jiosaavn-apii.vercel.app/api/limits` |
+
+---
+
+## Architecture Flow
 
 ```mermaid
 flowchart LR
-  A["1. Client"] --> B["2. GET /api/*"]
-  B --> C["3. JioSaavn upstream"]
-  C --> D["4. Clean JSON response"]
+    Client["Client Application"] --> Edge["Edge Runtime (Hono)"]
+    Edge --> Upstream["JioSaavn Upstream"]
+    Upstream --> Formatter["Transform & Decrypt"]
+    Formatter --> Response["Structured JSON (320kbps Audio)"]
 ```
 
-## API Policy
+---
 
-This project does not add an app-level request limit. It provides direct, open access to all music endpoints.
+## Quickstart
 
-Normal limits can still come from:
+Fetch any endpoint directly using `curl` or standard HTTP clients:
 
-- Your Vercel plan.
-- Serverless function duration.
-- Upstream JioSaavn availability.
-- Network or regional provider limits.
+```sh
+# Health Check
+curl "https://shnwazdev-jiosaavn-apii.vercel.app/health"
 
-Check the deployed policy at:
+# Global Search
+curl "https://shnwazdev-jiosaavn-apii.vercel.app/api/search?query=Believer"
 
-```text
-GET /api/limits
+# Scoped Song Search
+curl "https://shnwazdev-jiosaavn-apii.vercel.app/api/search/songs?query=Kesariya"
+
+# Song Details by ID
+curl "https://shnwazdev-jiosaavn-apii.vercel.app/api/songs/csaAEio2"
+
+# Song Details by JioSaavn URL
+curl "https://shnwazdev-jiosaavn-apii.vercel.app/api/songs?link=https://www.jiosaavn.com/song/kesariya/CSkefRhCXmc"
+
+# Top Trending Songs
+curl "https://shnwazdev-jiosaavn-apii.vercel.app/api/trending/songs?limit=5"
 ```
 
-## Endpoints
+---
 
-### Album
-
-| Method | Route         | Description                     |
-| ------ | ------------- | ------------------------------- |
-| GET    | `/api/albums` | Retrieve an album by ID or link |
-
-### Artists
-
-| Method | Route                       | Description                    |
-| ------ | --------------------------- | ------------------------------ |
-| GET    | `/api/artists`              | Retrieve artists by ID or link |
-| GET    | `/api/artists/{id}`         | Retrieve artist by ID          |
-| GET    | `/api/artists/{id}/albums`  | Retrieve artist albums         |
-| GET    | `/api/artists/{id}/related` | Retrieve related artists       |
-| GET    | `/api/artists/{id}/songs`   | Retrieve artist songs          |
-| GET    | `/api/artists/by-name`      | Retrieve artist by name        |
-
-### Browse
-
-| Method | Route                              | Description                                |
-| ------ | ---------------------------------- | ------------------------------------------ |
-| GET    | `/api/channels`                    | Retrieve channels                          |
-| GET    | `/api/channels/{id}`               | Retrieve channel detail                    |
-| GET    | `/api/charts`                      | Retrieve JioSaavn charts                   |
-| GET    | `/api/discover`                    | Retrieve discover channels                 |
-| GET    | `/api/genres`                      | Retrieve genre channels                    |
-| GET    | `/api/home`                        | Retrieve the JioSaavn home feed            |
-| GET    | `/api/home/artist-recommendations` | Retrieve home artist radio recommendations |
-| GET    | `/api/home/city-modules`           | Retrieve home city modules                 |
-| GET    | `/api/home/modules`                | Retrieve home feed module metadata         |
-| GET    | `/api/home/promos`                 | Retrieve editorial promo groups            |
-| GET    | `/api/moods`                       | Retrieve mood channels                     |
-| GET    | `/api/music-plus`                  | Retrieve music plus channels               |
-| GET    | `/api/radio`                       | Retrieve radio stations                    |
-| GET    | `/api/radio/{id}`                  | Retrieve a radio station detail payload    |
-| GET    | `/api/radio/artists`               | Retrieve artist radio recommendations      |
-| GET    | `/api/radio/featured`              | Retrieve featured radio stations           |
-
-### Lyrics
-
-| Method | Route                   | Description                          |
-| ------ | ----------------------- | ------------------------------------ |
-| GET    | `/api/lyrics`           | Retrieve lyrics by song name         |
-| GET    | `/api/lyrics/{id}`      | Retrieve lyrics by song or lyrics ID |
-| GET    | `/api/lyrics/{id}/sync` | Retrieve synced lyrics payload       |
-
-### Playlist
-
-| Method | Route            | Description                       |
-| ------ | ---------------- | --------------------------------- |
-| GET    | `/api/playlists` | Retrieve a playlist by ID or link |
-
-### Podcasts
-
-| Method | Route                | Description                                          |
-| ------ | -------------------- | ---------------------------------------------------- |
-| GET    | `/api/episodes/{id}` | Retrieve a podcast episode by ID                     |
-| GET    | `/api/podcasts`      | Retrieve a podcast by show ID, token, link, or query |
-| GET    | `/api/podcasts/{id}` | Retrieve a podcast by ID or token                    |
+## API Endpoints Reference
 
 ### Search
 
-| Method | Route                   | Description                     |
-| ------ | ----------------------- | ------------------------------- |
-| GET    | `/api/search`           | Global search                   |
-| GET    | `/api/search/albums`    | Search for albums               |
-| GET    | `/api/search/artists`   | Search for artists              |
-| GET    | `/api/search/playlists` | Search for playlists            |
-| GET    | `/api/search/songs`     | Search for songs                |
-| GET    | `/api/search/top-query` | Search for the top query bucket |
+| Method | Endpoint | Description | Query Parameters |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/api/search` | Search across songs, albums, artists, and playlists | `query` (required), `page`, `limit` |
+| `GET` | `/api/search/songs` | Search songs | `query` (required), `page`, `limit` |
+| `GET` | `/api/search/albums` | Search albums | `query` (required), `page`, `limit` |
+| `GET` | `/api/search/artists` | Search artists | `query` (required), `page`, `limit` |
+| `GET` | `/api/search/playlists` | Search playlists | `query` (required), `page`, `limit` |
 
 ### Songs
 
-| Method | Route                         | Description                       |
-| ------ | ----------------------------- | --------------------------------- |
-| GET    | `/api/songs`                  | Retrieve songs by ID or link      |
-| GET    | `/api/songs/{id}`             | Retrieve song by ID               |
-| GET    | `/api/songs/{id}/ringtone`    | Retrieve ringtone preview details |
-| GET    | `/api/songs/{id}/share`       | Retrieve a shareable song link    |
-| GET    | `/api/songs/{id}/suggestions` | Retrieve song suggestions         |
+| Method | Endpoint | Description | Parameters |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/api/songs` | Fetch songs by comma-separated IDs or song link | `ids` or `link` |
+| `GET` | `/api/songs/{id}` | Fetch a single song with 320kbps streams | `id` in path |
+| `GET` | `/api/songs/{id}/suggestions` | Recommendations based on song | `id` in path, `limit` |
+| `GET` | `/api/songs/station` | Create a song radio station | `song_id` |
+
+### Albums
+
+| Method | Endpoint | Description | Parameters |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/api/albums` | Retrieve album metadata and tracks | `id` or `link` |
+
+### Artists
+
+| Method | Endpoint | Description | Parameters |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/api/artists` | Retrieve artist details | `id` or `link` |
+| `GET` | `/api/artists/{id}` | Retrieve artist overview | `id` in path |
+| `GET` | `/api/artists/{id}/songs` | Retrieve artist songs | `id` in path, `page`, `category`, `sort` |
+| `GET` | `/api/artists/{id}/albums` | Retrieve artist albums | `id` in path, `page`, `category`, `sort` |
+| `GET` | `/api/artists/{id}/related` | Retrieve related artists | `id` in path |
+| `GET` | `/api/artists/by-name` | Search artist by name | `name` query param |
+
+### Playlists
+
+| Method | Endpoint | Description | Parameters |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/api/playlists` | Retrieve playlist details and songs | `id` or `link`, `page`, `limit` |
+
+### Lyrics
+
+| Method | Endpoint | Description | Parameters |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/api/lyrics` | Retrieve lyrics by song name query | `query` |
+| `GET` | `/api/lyrics/{id}` | Retrieve lyrics by song or lyrics ID | `id` in path |
+| `GET` | `/api/lyrics/{id}/sync` | Retrieve synchronized time-coded lyrics | `id` in path |
+
+### Browse Feeds
+
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/api/home` | Full JioSaavn home feed |
+| `GET` | `/api/home/modules` | Home feed module definitions |
+| `GET` | `/api/home/promos` | Editorial promo groupings |
+| `GET` | `/api/home/city-modules` | City trending modules |
+| `GET` | `/api/home/artist-recommendations` | Home artist radio recommendations |
+| `GET` | `/api/charts` | Top chart rankings |
+| `GET` | `/api/channels` | Browse channels |
+| `GET` | `/api/channels/{id}` | Channel detail payload |
+| `GET` | `/api/discover` | Discover categories |
+| `GET` | `/api/genres` | Music genre listings |
+| `GET` | `/api/moods` | Mood-based categories |
+| `GET` | `/api/music-plus` | Music plus stations |
+| `GET` | `/api/radio` | Radio station categories |
+| `GET` | `/api/radio/{id}` | Radio station stream payload |
+| `GET` | `/api/radio/artists` | Artist radio categories |
+| `GET` | `/api/radio/featured` | Featured radio channels |
+
+### Podcasts
+
+| Method | Endpoint | Description | Parameters |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/api/podcasts` | Retrieve podcast shows by ID, token, or link | `id`, `token`, `link`, `query` |
+| `GET` | `/api/podcasts/{id}` | Retrieve podcast show detail | `id` in path |
+| `GET` | `/api/episodes/{id}` | Retrieve single episode detail | `id` in path |
 
 ### Trending
 
-| Method | Route                     | Description                               |
-| ------ | ------------------------- | ----------------------------------------- |
-| GET    | `/api/trending`           | Retrieve all browse feeds in one response |
-| GET    | `/api/trending/albums`    | Retrieve trending albums                  |
-| GET    | `/api/trending/artists`   | Retrieve trending artists                 |
-| GET    | `/api/trending/playlists` | Retrieve trending playlists               |
-| GET    | `/api/trending/podcasts`  | Retrieve trending podcasts                |
-| GET    | `/api/trending/songs`     | Retrieve trending songs                   |
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/api/trending` | Aggregated trending overview |
+| `GET` | `/api/trending/songs` | Trending songs list |
+| `GET` | `/api/trending/albums` | Trending albums list |
+| `GET` | `/api/trending/artists` | Trending artists list |
+| `GET` | `/api/trending/playlists` | Trending playlists list |
+| `GET` | `/api/trending/podcasts` | Trending podcast episodes |
 
-## Example Requests
+---
 
-```sh
-curl "https://shnwazdev-jiosaavn-apii.vercel.app/health"
-curl "https://shnwazdev-jiosaavn-apii.vercel.app/api/search?query=Believer"
-curl "https://shnwazdev-jiosaavn-apii.vercel.app/api/search/songs?query=Kesariya"
-curl "https://shnwazdev-jiosaavn-apii.vercel.app/api/trending/songs?limit=1"
+## Response Schema
+
+Responses follow a uniform envelope:
+
+```json
+{
+  "success": true,
+  "data": {
+    "total": 1,
+    "start": 0,
+    "results": [
+      {
+        "id": "csaAEio2",
+        "name": "Believer",
+        "type": "song",
+        "year": "2017",
+        "duration": 204,
+        "label": "Interscope Records",
+        "language": "english",
+        "hasLyrics": true,
+        "url": "https://www.jiosaavn.com/song/believer/XScOACV-bVc",
+        "downloadUrl": [
+          { "quality": "12kbps", "url": "..." },
+          { "quality": "48kbps", "url": "..." },
+          { "quality": "96kbps", "url": "..." },
+          { "quality": "160kbps", "url": "..." },
+          { "quality": "320kbps", "url": "..." }
+        ]
+      }
+    ]
+  }
+}
 ```
 
-## Run Locally
+---
+
+## Development
+
+### Prerequisites
+
+- Node.js >= 20.0.0
+- npm >= 10.0.0
+
+### Setup
 
 ```sh
-npm install
+# Clone repository
+git clone https://github.com/shnwazdeveloper/shnwazdev-jiosaavn-api.git
+cd shnwazdev-jiosaavn-api
+
+# Install dependencies
+npm ci
+
+# Start local dev server with hot reload
 npm run dev
-```
 
-Open:
-
-```text
-http://localhost:3000
-```
-
-## Validate
-
-```sh
-npm run lint
-npm run build
+# Run unit and integration tests
 npm test
-npm run spell-check
+
+# Run linter
+npm run lint
+
+# Run typecheck and production build
+npm run build
 ```
 
-## Deploy To Vercel
+---
 
-Import the GitHub repository in Vercel, or deploy from the CLI:
+## Deployment
+
+### Vercel Serverless
+
+The repository includes a ready-to-deploy configuration:
+- `vercel.json`: Handles routing, CORS headers, and function timeouts.
+- `api/index.js`: Serverless handler mounting the Hono application.
 
 ```sh
-npm run vercel:deploy
+npx vercel --prod
 ```
 
-Recommended Vercel settings:
+### Cloudflare Workers
 
-| Setting          | Value           |
-| ---------------- | --------------- |
-| Framework preset | Other           |
-| Build command    | `npm run build` |
-| Output directory | empty/default   |
-| Install command  | `npm ci`        |
-| Node.js          | 20 or newer     |
+Edge deployment via Wrangler:
+- `wrangler.jsonc`: Cloudflare Worker configuration with `src/server.ts` entry.
 
-The Vercel entrypoint is:
-
-```text
-api/index.js
+```sh
+npm run deploy:cf
 ```
 
-The static homepage is served from:
-
-```text
-public/index.html
-```
-
-## Repository About
-
-Suggested GitHub About text:
-
-```text
-Unofficial ShnwazDev JioSaavn API with Hono, TypeScript, OpenAPI docs, Vercel hosting, and no app-level rate limit.
-```
-
-Suggested topics:
-
-```text
-jiosaavn, jiosaavn-api, music-api, hono, typescript, openapi, vercel, shnwazdev
-```
-
-## Tech Stack
-
-- Hono
-- TypeScript
-- Zod OpenAPI
-- Scalar API Reference
-- Vitest
-- ESLint
-- Vercel Serverless Functions
+---
 
 ## License
 
-MIT
+Released under the [MIT License](LICENSE). Built for educational and personal API integrations.

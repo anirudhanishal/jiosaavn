@@ -29,14 +29,17 @@ const stats = [
 
 const features = [
   {
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>`,
     title: 'Search Engine',
     description: 'Unified and scoped search for songs, albums, artists, and playlists with pagination.'
   },
   {
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>`,
     title: 'Browse Feeds',
     description: 'Home modules, charts, genres, moods, city trends, promo feeds, and radio stations.'
   },
   {
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>`,
     title: 'Rich 320kbps Metadata',
     description: 'Direct high quality 320kbps audio streams, artist discography, and synced lyrics.'
   }
@@ -186,6 +189,7 @@ const renderFeatures = () =>
     .map(
       (feature) => `
         <article class="glass-card feature-item">
+          <span class="feature-icon">${feature.icon}</span>
           <h3>${escapeHtml(feature.title)}</h3>
           <p>${escapeHtml(feature.description)}</p>
         </article>`
@@ -483,6 +487,18 @@ h1 {
 .glass-card:hover {
   background: var(--glass-bg-hover);
   transform: translateY(-2px);
+}
+.feature-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  color: var(--accent);
+  margin-bottom: 14px;
 }
 .glass-card h3 {
   font-size: 1.05rem;
