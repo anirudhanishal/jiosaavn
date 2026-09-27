@@ -31,12 +31,12 @@ Unofficial JioSaavn API and developer portal built for `shnwazdev`. Exposes comp
 
 | Target | Description | URL |
 | :--- | :--- | :--- |
-| ![Vercel](https://img.shields.io/badge/Portal-Vercel-000000?style=flat-square&logo=vercel&logoColor=white) | Production Web Portal | `https://shnwazdev-jiosaavn-apii.vercel.app/` |
-| ![Scalar](https://img.shields.io/badge/Docs-Scalar-0969da?style=flat-square) | Interactive Documentation | `https://shnwazdev-jiosaavn-apii.vercel.app/docs` |
-| ![OpenAPI](https://img.shields.io/badge/Schema-Swagger-6BA539?style=flat-square&logo=swagger&logoColor=white) | OpenAPI 3.1 Spec | `https://shnwazdev-jiosaavn-apii.vercel.app/swagger` |
-| ![Health](https://img.shields.io/badge/Status-Health-2ea44f?style=flat-square) | Uptime Monitor Route | `https://shnwazdev-jiosaavn-apii.vercel.app/health` |
-| ![Index](https://img.shields.io/badge/Index-Endpoints-8250df?style=flat-square) | Machine-Readable Route Catalog | `https://shnwazdev-jiosaavn-apii.vercel.app/api/endpoints` |
-| ![Limits](https://img.shields.io/badge/Policy-Limits-bf8700?style=flat-square) | Policy Metadata | `https://shnwazdev-jiosaavn-apii.vercel.app/api/limits` |
+| ![Production](https://img.shields.io/badge/Portal-jio.shnwaz.dev-0969da?style=flat-square&logo=cloudflare&logoColor=white) | Production Web Portal | `https://jio.shnwaz.dev/` |
+| ![Scalar](https://img.shields.io/badge/Docs-Scalar-0969da?style=flat-square) | Interactive Documentation | `https://jio.shnwaz.dev/docs` |
+| ![OpenAPI](https://img.shields.io/badge/Schema-Swagger-6BA539?style=flat-square&logo=swagger&logoColor=white) | OpenAPI 3.1 Spec | `https://jio.shnwaz.dev/swagger` |
+| ![Health](https://img.shields.io/badge/Status-Health-2ea44f?style=flat-square) | Uptime Monitor Route | `https://jio.shnwaz.dev/health` |
+| ![Index](https://img.shields.io/badge/Index-Endpoints-8250df?style=flat-square) | Machine-Readable Route Catalog | `https://jio.shnwaz.dev/api/endpoints` |
+| ![Limits](https://img.shields.io/badge/Policy-Limits-bf8700?style=flat-square) | Policy Metadata | `https://jio.shnwaz.dev/api/limits` |
 
 ---
 
@@ -46,22 +46,22 @@ Query any route using `curl` or any HTTP client without authentication:
 
 ```sh
 # Health Check
-curl "https://shnwazdev-jiosaavn-apii.vercel.app/health"
+curl "https://jio.shnwaz.dev/health"
 
 # Global Search
-curl "https://shnwazdev-jiosaavn-apii.vercel.app/api/search?query=Believer"
+curl "https://jio.shnwaz.dev/api/search?query=Believer"
 
 # Scoped Song Search
-curl "https://shnwazdev-jiosaavn-apii.vercel.app/api/search/songs?query=Kesariya"
+curl "https://jio.shnwaz.dev/api/search/songs?query=Kesariya"
 
 # Song Details by ID
-curl "https://shnwazdev-jiosaavn-apii.vercel.app/api/songs/csaAEio2"
+curl "https://jio.shnwaz.dev/api/songs/0W6DtW_N"
 
 # Song Details by JioSaavn URL
-curl "https://shnwazdev-jiosaavn-apii.vercel.app/api/songs?link=https://www.jiosaavn.com/song/kesariya/CSkefRhCXmc"
+curl "https://jio.shnwaz.dev/api/songs?link=https://www.jiosaavn.com/song/kesariya/AgIAQyBeWlI"
 
 # Top Trending Songs
-curl "https://shnwazdev-jiosaavn-apii.vercel.app/api/trending/songs?limit=5"
+curl "https://jio.shnwaz.dev/api/trending/songs?limit=5"
 ```
 
 ---
