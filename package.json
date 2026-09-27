@@ -1,7 +1,22 @@
 {
   "name": "shnwazdev-jiosaavn-api",
   "version": "0.1.0",
-  "description": "ShnwazDev unofficial JioSaavn API for Vercel",
+  "description": "High-performance unofficial JioSaavn music API for songs, 320kbps audio streams, albums, playlists, lyrics, search, and artists.",
+  "keywords": [
+    "jio",
+    "saavn",
+    "jiosaavn",
+    "jiosaavn-api",
+    "jio-saavn",
+    "saavn-api",
+    "music-api",
+    "songs",
+    "audio-api",
+    "hono",
+    "cloudflare-workers",
+    "vercel",
+    "openapi"
+  ],
   "type": "module",
   "license": "MIT",
   "repository": "https://github.com/shnwazdeveloper/shnwazdev-jiosaavn-api",

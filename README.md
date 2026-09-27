@@ -1,55 +1,48 @@
 # ShnwazDev JioSaavn API
 
-[![CI](https://github.com/shnwazdeveloper/shnwazdev-jiosaavn-api/actions/workflows/ci.yaml/badge.svg)](https://github.com/shnwazdeveloper/shnwazdev-jiosaavn-api/actions/workflows/ci.yaml)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.8-blue.svg)](https://www.typescriptlang.org/)
-[![Node.js](https://img.shields.io/badge/Node.js-%3E%3D20-green.svg)](https://nodejs.org/)
-[![Hono](https://img.shields.io/badge/Framework-Hono%20v4-E36002.svg)](https://hono.dev/)
-[![OpenAPI](https://img.shields.io/badge/OpenAPI-3.1-6BA539.svg)](https://swagger.io/specification/)
-[![License](https://img.shields.io/badge/License-MIT-black.svg)](LICENSE)
+<div align="center">
 
-Unofficial JioSaavn API and developer portal built for `shnwazdev`. Exposes comprehensive music metadata, 320kbps audio streams, albums, artists, browse feeds, synced lyrics, playlists, podcasts, radio, search, and trending charts through high-performance Hono and TypeScript edge runtimes.
+[![CI Status](https://img.shields.io/github/actions/workflow/status/shnwazdeveloper/shnwazdev-jiosaavn-api/ci.yaml?branch=main&label=CI&logo=githubactions&logoColor=white&style=for-the-badge)](https://github.com/shnwazdeveloper/shnwazdev-jiosaavn-api/actions/workflows/ci.yaml)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Hono](https://img.shields.io/badge/Hono-E36002?style=for-the-badge&logo=hono&logoColor=white)](https://hono.dev/)
+[![Cloudflare Workers](https://img.shields.io/badge/Cloudflare_Workers-F38020?style=for-the-badge&logo=cloudflareworkers&logoColor=white)](https://workers.cloudflare.com/)
+[![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
+[![OpenAPI 3.1](https://img.shields.io/badge/OpenAPI_3.1-6BA539?style=for-the-badge&logo=openapiinitiative&logoColor=white)](https://swagger.io/specification/)
+[![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
+
+</div>
+
+Unofficial JioSaavn API and developer portal built for `shnwazdev`. Exposes comprehensive music metadata, direct 320kbps audio stream download URLs, albums, artists, browse feeds, synced lyrics, playlists, podcasts, radio stations, search, and trending charts through high-performance Hono and TypeScript edge runtimes.
 
 ---
 
 ## Highlights
 
-- **Open Public Access**: No API keys, tokens, or registration required.
-- **Zero Rate Limits**: No application-level throttling or artificial request caps.
-- **Edge Native**: Ready for Cloudflare Workers and Vercel serverless deployments.
-- **OpenAPI 3.1 & Scalar**: Interactive API reference and live request testing.
-- **Type-Safe Models**: Robust validation with Zod schemas and full TypeScript coverage.
-- **47+ Music Endpoints**: Complete coverage across search, songs, albums, artists, playlists, lyrics, radio, and feeds.
+- ![Auth](https://img.shields.io/badge/AUTH-None-2ea44f?style=flat-square) **Open Public Access**: No API keys, tokens, or registration required.
+- ![Rate Limit](https://img.shields.io/badge/LIMIT-None-0969da?style=flat-square) **Zero Rate Limits**: No application-level throttling or artificial request caps.
+- ![Runtime](https://img.shields.io/badge/RUNTIME-Edge_Native-bf8700?style=flat-square) **Edge Native**: Production-ready for Cloudflare Workers and Vercel serverless.
+- ![Docs](https://img.shields.io/badge/DOCS-Scalar_%2B_Swagger-8250df?style=flat-square) **Interactive Docs**: Built-in Scalar reference and OpenAPI 3.1 JSON schemas.
+- ![Audio](https://img.shields.io/badge/AUDIO-320kbps-cf222e?style=flat-square) **Lossless Quality**: Direct CDN audio stream links up to 320kbps MP4 / AAC.
+- ![Catalog](https://img.shields.io/badge/CATALOG-47%2B_Routes-0969da?style=flat-square) **Complete JioSaavn Surface**: Full coverage across search, songs, albums, artists, playlists, lyrics, radio, and feeds.
 
 ---
 
 ## Live Deployments
 
-| Resource | Target | URL |
+| Target | Description | URL |
 | :--- | :--- | :--- |
-| **Website** | Production Portal | `https://shnwazdev-jiosaavn-apii.vercel.app/` |
-| **Scalar Docs** | Interactive API Testing | `https://shnwazdev-jiosaavn-apii.vercel.app/docs` |
-| **OpenAPI Spec** | Swagger Schema JSON | `https://shnwazdev-jiosaavn-apii.vercel.app/swagger` |
-| **Health Check** | Status / Uptime Monitor | `https://shnwazdev-jiosaavn-apii.vercel.app/health` |
-| **Endpoint Index** | Machine-Readable Catalog | `https://shnwazdev-jiosaavn-apii.vercel.app/api/endpoints` |
-| **Limits Metadata** | Policy Information | `https://shnwazdev-jiosaavn-apii.vercel.app/api/limits` |
-
----
-
-## Architecture Flow
-
-```mermaid
-flowchart LR
-    Client["Client Application"] --> Edge["Edge Runtime (Hono)"]
-    Edge --> Upstream["JioSaavn Upstream"]
-    Upstream --> Formatter["Transform & Decrypt"]
-    Formatter --> Response["Structured JSON (320kbps Audio)"]
-```
+| ![Vercel](https://img.shields.io/badge/Portal-Vercel-000000?style=flat-square&logo=vercel&logoColor=white) | Production Web Portal | `https://shnwazdev-jiosaavn-apii.vercel.app/` |
+| ![Scalar](https://img.shields.io/badge/Docs-Scalar-0969da?style=flat-square) | Interactive Documentation | `https://shnwazdev-jiosaavn-apii.vercel.app/docs` |
+| ![OpenAPI](https://img.shields.io/badge/Schema-Swagger-6BA539?style=flat-square&logo=swagger&logoColor=white) | OpenAPI 3.1 Spec | `https://shnwazdev-jiosaavn-apii.vercel.app/swagger` |
+| ![Health](https://img.shields.io/badge/Status-Health-2ea44f?style=flat-square) | Uptime Monitor Route | `https://shnwazdev-jiosaavn-apii.vercel.app/health` |
+| ![Index](https://img.shields.io/badge/Index-Endpoints-8250df?style=flat-square) | Machine-Readable Route Catalog | `https://shnwazdev-jiosaavn-apii.vercel.app/api/endpoints` |
+| ![Limits](https://img.shields.io/badge/Policy-Limits-bf8700?style=flat-square) | Policy Metadata | `https://shnwazdev-jiosaavn-apii.vercel.app/api/limits` |
 
 ---
 
 ## Quickstart
 
-Fetch any endpoint directly using `curl` or standard HTTP clients:
+Query any route using `curl` or any HTTP client without authentication:
 
 ```sh
 # Health Check
@@ -79,97 +72,97 @@ curl "https://shnwazdev-jiosaavn-apii.vercel.app/api/trending/songs?limit=5"
 
 | Method | Endpoint | Description | Query Parameters |
 | :--- | :--- | :--- | :--- |
-| `GET` | `/api/search` | Search across songs, albums, artists, and playlists | `query` (required), `page`, `limit` |
-| `GET` | `/api/search/songs` | Search songs | `query` (required), `page`, `limit` |
-| `GET` | `/api/search/albums` | Search albums | `query` (required), `page`, `limit` |
-| `GET` | `/api/search/artists` | Search artists | `query` (required), `page`, `limit` |
-| `GET` | `/api/search/playlists` | Search playlists | `query` (required), `page`, `limit` |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/search` | Search songs, albums, artists, and playlists | `query` (required), `page`, `limit` |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/search/songs` | Search songs | `query` (required), `page`, `limit` |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/search/albums` | Search albums | `query` (required), `page`, `limit` |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/search/artists` | Search artists | `query` (required), `page`, `limit` |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/search/playlists` | Search playlists | `query` (required), `page`, `limit` |
 
 ### Songs
 
 | Method | Endpoint | Description | Parameters |
 | :--- | :--- | :--- | :--- |
-| `GET` | `/api/songs` | Fetch songs by comma-separated IDs or song link | `ids` or `link` |
-| `GET` | `/api/songs/{id}` | Fetch a single song with 320kbps streams | `id` in path |
-| `GET` | `/api/songs/{id}/suggestions` | Recommendations based on song | `id` in path, `limit` |
-| `GET` | `/api/songs/station` | Create a song radio station | `song_id` |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/songs` | Fetch songs by comma-separated IDs or song link | `ids` or `link` |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/songs/{id}` | Fetch a single song with 320kbps audio streams | `id` in path |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/songs/{id}/suggestions` | Recommendations for a song | `id` in path, `limit` |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/songs/station` | Create song radio station | `song_id` |
 
 ### Albums
 
 | Method | Endpoint | Description | Parameters |
 | :--- | :--- | :--- | :--- |
-| `GET` | `/api/albums` | Retrieve album metadata and tracks | `id` or `link` |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/albums` | Retrieve album metadata and tracks | `id` or `link` |
 
 ### Artists
 
 | Method | Endpoint | Description | Parameters |
 | :--- | :--- | :--- | :--- |
-| `GET` | `/api/artists` | Retrieve artist details | `id` or `link` |
-| `GET` | `/api/artists/{id}` | Retrieve artist overview | `id` in path |
-| `GET` | `/api/artists/{id}/songs` | Retrieve artist songs | `id` in path, `page`, `category`, `sort` |
-| `GET` | `/api/artists/{id}/albums` | Retrieve artist albums | `id` in path, `page`, `category`, `sort` |
-| `GET` | `/api/artists/{id}/related` | Retrieve related artists | `id` in path |
-| `GET` | `/api/artists/by-name` | Search artist by name | `name` query param |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/artists` | Retrieve artist details | `id` or `link` |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/artists/{id}` | Retrieve artist overview | `id` in path |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/artists/{id}/songs` | Retrieve artist songs | `id` in path, `page`, `category`, `sort` |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/artists/{id}/albums` | Retrieve artist albums | `id` in path, `page`, `category`, `sort` |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/artists/{id}/related` | Retrieve related artists | `id` in path |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/artists/by-name` | Search artist by name | `name` query param |
 
 ### Playlists
 
 | Method | Endpoint | Description | Parameters |
 | :--- | :--- | :--- | :--- |
-| `GET` | `/api/playlists` | Retrieve playlist details and songs | `id` or `link`, `page`, `limit` |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/playlists` | Retrieve playlist details and songs | `id` or `link`, `page`, `limit` |
 
 ### Lyrics
 
 | Method | Endpoint | Description | Parameters |
 | :--- | :--- | :--- | :--- |
-| `GET` | `/api/lyrics` | Retrieve lyrics by song name query | `query` |
-| `GET` | `/api/lyrics/{id}` | Retrieve lyrics by song or lyrics ID | `id` in path |
-| `GET` | `/api/lyrics/{id}/sync` | Retrieve synchronized time-coded lyrics | `id` in path |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/lyrics` | Retrieve lyrics by song name | `query` |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/lyrics/{id}` | Retrieve lyrics by song ID | `id` in path |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/lyrics/{id}/sync` | Retrieve synchronized time-coded lyrics | `id` in path |
 
 ### Browse Feeds
 
 | Method | Endpoint | Description |
 | :--- | :--- | :--- |
-| `GET` | `/api/home` | Full JioSaavn home feed |
-| `GET` | `/api/home/modules` | Home feed module definitions |
-| `GET` | `/api/home/promos` | Editorial promo groupings |
-| `GET` | `/api/home/city-modules` | City trending modules |
-| `GET` | `/api/home/artist-recommendations` | Home artist radio recommendations |
-| `GET` | `/api/charts` | Top chart rankings |
-| `GET` | `/api/channels` | Browse channels |
-| `GET` | `/api/channels/{id}` | Channel detail payload |
-| `GET` | `/api/discover` | Discover categories |
-| `GET` | `/api/genres` | Music genre listings |
-| `GET` | `/api/moods` | Mood-based categories |
-| `GET` | `/api/music-plus` | Music plus stations |
-| `GET` | `/api/radio` | Radio station categories |
-| `GET` | `/api/radio/{id}` | Radio station stream payload |
-| `GET` | `/api/radio/artists` | Artist radio categories |
-| `GET` | `/api/radio/featured` | Featured radio channels |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/home` | Full JioSaavn home feed |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/home/modules` | Home feed module definitions |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/home/promos` | Editorial promo groupings |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/home/city-modules` | City trending modules |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/home/artist-recommendations` | Home artist radio recommendations |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/charts` | Top chart rankings |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/channels` | Browse channels |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/channels/{id}` | Channel detail payload |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/discover` | Discover categories |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/genres` | Music genre listings |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/moods` | Mood-based categories |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/music-plus` | Music plus stations |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/radio` | Radio station categories |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/radio/{id}` | Radio station stream payload |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/radio/artists` | Artist radio categories |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/radio/featured` | Featured radio channels |
 
 ### Podcasts
 
 | Method | Endpoint | Description | Parameters |
 | :--- | :--- | :--- | :--- |
-| `GET` | `/api/podcasts` | Retrieve podcast shows by ID, token, or link | `id`, `token`, `link`, `query` |
-| `GET` | `/api/podcasts/{id}` | Retrieve podcast show detail | `id` in path |
-| `GET` | `/api/episodes/{id}` | Retrieve single episode detail | `id` in path |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/podcasts` | Retrieve podcasts by ID, token, link, or query | `id`, `token`, `link`, `query` |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/podcasts/{id}` | Retrieve podcast show detail | `id` in path |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/episodes/{id}` | Retrieve single episode detail | `id` in path |
 
 ### Trending
 
 | Method | Endpoint | Description |
 | :--- | :--- | :--- |
-| `GET` | `/api/trending` | Aggregated trending overview |
-| `GET` | `/api/trending/songs` | Trending songs list |
-| `GET` | `/api/trending/albums` | Trending albums list |
-| `GET` | `/api/trending/artists` | Trending artists list |
-| `GET` | `/api/trending/playlists` | Trending playlists list |
-| `GET` | `/api/trending/podcasts` | Trending podcast episodes |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/trending` | Aggregated trending overview |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/trending/songs` | Trending songs list |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/trending/albums` | Trending albums list |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/trending/artists` | Trending artists list |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/trending/playlists` | Trending playlists list |
+| ![GET](https://img.shields.io/badge/GET-0ea5e9?style=flat-square) | `/api/trending/podcasts` | Trending podcast episodes |
 
 ---
 
-## Response Schema
+## Response Envelope
 
-Responses follow a uniform envelope:
+All API endpoints return structured JSON:
 
 ```json
 {
@@ -203,14 +196,7 @@ Responses follow a uniform envelope:
 
 ---
 
-## Development
-
-### Prerequisites
-
-- Node.js >= 20.0.0
-- npm >= 10.0.0
-
-### Setup
+## Local Development
 
 ```sh
 # Clone repository
@@ -220,16 +206,16 @@ cd shnwazdev-jiosaavn-api
 # Install dependencies
 npm ci
 
-# Start local dev server with hot reload
+# Start local server with hot reload
 npm run dev
 
-# Run unit and integration tests
+# Run test suite
 npm test
 
 # Run linter
 npm run lint
 
-# Run typecheck and production build
+# Production build
 npm run build
 ```
 
@@ -239,9 +225,8 @@ npm run build
 
 ### Vercel Serverless
 
-The repository includes a ready-to-deploy configuration:
-- `vercel.json`: Handles routing, CORS headers, and function timeouts.
-- `api/index.js`: Serverless handler mounting the Hono application.
+- `vercel.json`: Routing, headers, and function configuration.
+- `api/index.js`: Serverless handler mounting Hono application.
 
 ```sh
 npx vercel --prod
@@ -249,7 +234,6 @@ npx vercel --prod
 
 ### Cloudflare Workers
 
-Edge deployment via Wrangler:
 - `wrangler.jsonc`: Cloudflare Worker configuration with `src/server.ts` entry.
 
 ```sh
