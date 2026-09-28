@@ -2,6 +2,7 @@
   "name": "shnwazdev-jiosaavn-api",
   "version": "0.1.0",
   "description": "High-performance unofficial JioSaavn music API for songs, 320kbps audio streams, albums, playlists, lyrics, search, and artists.",
+  "type": "module",
   "keywords": [
     "jio",
     "saavn",
@@ -17,7 +18,6 @@
     "vercel",
     "openapi"
   ],
-  "type": "module",
   "license": "MIT",
   "repository": "https://github.com/shnwazdeveloper/shnwazdev-jiosaavn-api",
   "author": "shnwazdev",
@@ -75,7 +75,7 @@
     "@hono/zod-openapi": "^0.19.2",
     "@hono/zod-validator": "^0.4.3",
     "@scalar/hono-api-reference": "^0.7.4",
-    "hono": "^4.12.31",
+    "hono": "^4.13.9",
     "node-forge": "^1.3.1",
     "zod": "^3.24.2"
   },
@@ -83,8 +83,8 @@
     "@kolhe/eslint-config": "2.2.6",
     "@types/node": "^22.13.14",
     "@types/node-forge": "^1.3.11",
-    "@vitest/coverage-v8": "^4.1.10",
-    "@vitest/ui": "^4.1.10",
+    "@vitest/coverage-v8": "^4.1.11",
+    "@vitest/ui": "^4.1.11",
     "cspell": "8.18.1",
     "eslint": "^9.23.0",
     "eslint-plugin-prettier": "^5.2.5",
@@ -92,7 +92,7 @@
     "tsc-alias": "^1.8.13",
     "tsx": "^4.20.6",
     "typescript": "^5.8.2",
-    "vitest": "^4.1.10"
+    "vitest": "^4.1.11"
   },
   "engines": {
     "node": ">=20"
