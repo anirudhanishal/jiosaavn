@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "jiosaavan",
+  "name": "jiosaavn",
   "account_id": "d87fcbef5873e0c42f928109f8acb5af",
   "main": "src/server.ts",
   "compatibility_date": "2025-01-01",
@@ -10,17 +10,5 @@
   "observability": {
     "enabled": true
   },
-  "workers_dev": true,
-  "routes": [
-  {
-    "pattern": "jio.shnwaz.dev",
-    "custom_domain": true,
-    "zone_name": "shnwaz.dev"
-  },
-  {
-    "pattern": "api.shnwaz.dev",
-    "custom_domain": true,
-    "zone_name": "shnwaz.dev"
-  }
-]
+  "workers_dev": true
 }
