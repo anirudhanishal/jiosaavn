@@ -12,7 +12,15 @@
   },
   "workers_dev": true,
   "routes": [
-    { "pattern": "jio.shnwaz.dev", "custom_domain": true },
-    { "pattern": "api.shnwaz.dev", "custom_domain": true }
-  ]
+  {
+    "pattern": "jio.shnwaz.dev",
+    "custom_domain": true,
+    "zone_name": "shnwaz.dev"
+  },
+  {
+    "pattern": "api.shnwaz.dev",
+    "custom_domain": true,
+    "zone_name": "shnwaz.dev"
+  }
+]
 }
